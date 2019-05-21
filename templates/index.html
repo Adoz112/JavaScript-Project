@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Terrorist Data, by Team One</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/static/css/dash.css">
+</head>
+<body>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <div id="chart-01" class="chart">chart1<select id="selDataset" onchange="optionChanged(this.value)"></select></div>
+      <div id="chart-02" class="chart">chart2</div>
+      <div id="chart-03" class="chart">chart3</div>
+    </div>
+    <div class="col-4">
+      <div id="mapbox-panel">
+        <div id="map">big ol' map</div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

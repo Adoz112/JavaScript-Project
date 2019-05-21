@@ -1,0 +1,27 @@
+
+#mapbox-panel {
+  height: 780px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: red;
+  position: relative;
+}
+
+#map {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0px;
+  top: 0;
+  width: 100%;
+}
+
+.chart {
+  margin-bottom: 1rem;
+  height: 250px;
+  padding: 10px;
+  border-color: black;
+  border-width: 1px;
+  border-style: dashed;
+}
