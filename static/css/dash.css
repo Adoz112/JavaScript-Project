@@ -1,6 +1,6 @@
 
 #mapbox-panel {
-  height: 780px;
+  height: 575px;
   border-style: solid;
   border-width: 0px;
   border-color: red;
@@ -19,7 +19,7 @@
 
 #smlmap {
   bottom: 0px;
-  height: 200px;
+  height: 350px;
   left: 0px;
   right: 0px;
   top: 0px;
@@ -38,7 +38,27 @@
 
 .chart {
   margin-bottom: 1rem;
+  height: 350px;
+  padding: 0px;
+  border-color: grey;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+}
+
+.chart1 {
+  margin-bottom: 1rem;
   height: 250px;
+  padding: 0px;
+  border-color: grey;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+}
+
+.stream {
+  margin-bottom: 1rem;
+  height: 550px;
   padding: 0px;
   border-color: grey;
   border-width: 1px;

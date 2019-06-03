@@ -52,13 +52,10 @@ var myMap = L.map("map", {
  //var tMap = L.map("smlmap").setView([45.52, -122.67], 2);
 
  var tMap = L.map("smlmap", {
-    center: [37.09, -95.71],
+    center: [41.6488, -0.8891],
     zoom: 2,
     layers: [markers]
 });
-
-
-
 
   // Add a tile layer
  var smallMap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -296,12 +293,11 @@ function buildBubble(year) {
    var layout = {
        title: 'Country Attacks by Year',
       xaxis: {
-          autotick: true,
+         // autotick: true,
           showgrid: false,
           zeroline: false,
           ticks: '',
-          showticklabels: false
-      },
+          showticklabels: false      },
       margin: {
           l: 50,
           r: 50,
@@ -317,29 +313,61 @@ function buildBubble(year) {
 }
 
 function buildHighChart() {
-    var options = {
-        chart: {
-            renderTo: 'chart-03',
-            type: 'line'
+   var options = {
+       chart: {
+           renderTo: 'chart-03',
+           type: 'streamgraph'
+       },
+       title: { text: 'Total Terror Attacks by Target Type'
+       },
+       plotOptions:{
+           area: {
+               stacking: 'normal',
+               lineColor: '#000000',
+               lineWidth: 0,
+               marker: {
+                   lineWidth: 0,
+                   lineColor: '#000000'
+               }
+           }
+       },
+       yAxis: {
+           visible: false,
+           startOnTick: false,
+           endOnTick: false
         },
-        title: { text: 'Total Terror Attacks'
-        },
-        series: [{}]
-    };
-    var url =  "/highchart";
-    d3.json(url).then(function(data) {
 
-    var attackArr = [];
+       series: [{}]
+   };
+   var url =  "/highchart";
+   d3.json(url).then(function(response) {
 
-    for (var i = 0; i < Object.keys(data.thing).length; i++) {
-            attackArr.push(data.thing[i]);
-    }
+   var attackArr = [];
+   var lookup = {};
+   var year = {}
 
-    options.series[0].name = "Terror Attacks";
-    options.series[0].pointStart = 1970;
-    options.series[0].data = attackArr;
-    var chart = new Highcharts.Chart(options);
-    });
+   for (var i = 0; i < Object.keys(response).length; i++) {
+       if(!(response[i].targtype1_txt in lookup)){
+           lookup[response[i].targtype1_txt] = [];
+       }
+       lookup[response[i].targtype1_txt].push(response[i].thing)
+   }
+   // console.log(lookup);
+
+
+   // console.log(lookup['Abortion Related'])
+
+   for (var i = 0; i < Object.keys(lookup).length; i++) {
+       options.series[i] = {}
+       options.series[i].pointStart = 1970;
+       options.series[i].data = lookup[Object.keys(lookup)[i]];
+       options.series[i].name = Object.keys(lookup)[i];
+       options.series[i].showInLegend = false;
+   }
+
+   var chart = new Highcharts.Chart(options);
+ //  chart.legend = false;
+   });
 }
 
 

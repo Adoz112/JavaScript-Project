@@ -46,8 +46,9 @@ def position(year, country):
 def highchart():
     conn = sqlite3.connect('db/storage.db')
     df = pd.read_sql_query(
-        'select count(targtype1_txt) as thing from terror_data group by iyear;', conn)
-    return df.to_json()
+        'select COALESCE(a.thing, 0) as thing, b.iyear as iyear, b.targtype1_txt as targtype1_txt FROM ( SELECT x.iyear, y.targtype1_txt FROM (SELECT DISTINCT iyear FROM terror_data) x LEFT JOIN (SELECT DISTINCT targtype1_txt FROM terror_data) y ON 1 = 1) b LEFT OUTER JOIN (SELECT targtype1_txt, iyear, count(targtype1_txt) as thing from terror_data GROUP BY iyear, targtype1_txt) a ON a.iyear = b.iyear AND a.targtype1_txt = b.targtype1_txt', conn)
+
+    return df.to_json(orient="records")
 
 
 @app.route("/bubble/<year>")

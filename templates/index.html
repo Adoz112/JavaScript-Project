@@ -24,19 +24,18 @@
     </center>
     </div>
     <div class="col-6">
-      <div id="chart-01"><select id="selSmallYears" onchange="optionSmallChanged(this.value)"></select>
+      <div id="chart-01"><pre> Select Year: <select id="selSmallYears" onchange="optionSmallChanged(this.value)"></select></pre>
         <div id="smlmap"></div>
       </div>
-      <div id="chart-02-panel">
-          <select id="bubSelYears" onchange="bubbleOptionChange(this.value)"></select>
-          <div id="chart-02" class="chart"></div>
-      </div>
-      <div id="chart-03" class="chart"></div>
+      <br><br>
+      <div id="chart-03" class="stream" ></div>
     </div>
-    <div class="col-4">
+    <div class="col-5">
+      <div id="chart-02-panel"><pre> Select Year:  <select id="bubSelYears" onchange="bubbleOptionChange(this.value)"></select></pre>
+            <div id="chart-02" class="chart"></div>
+      </div>
       <div id="mapbox-panel">
-        <select id="selYears" onchange="optionChanged(this.value)"></select>
-        <select id="selCountry" onchange="countryOptionChange(this.value)"></select>
+        <pre> Select Year: <select id="selYears" onchange="optionChanged(this.value)"></select> Select Country: <select id="selCountry" onchange="countryOptionChange(this.value)"></select><pre>
         <div id="map"></div>
       </div>
     </div>
